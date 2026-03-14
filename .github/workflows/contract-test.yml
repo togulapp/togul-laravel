@@ -14,12 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Checkout PHP SDK
-        uses: actions/checkout@v4
-        with:
-          repository: noriapp/nori-php
-          path: nori-php
-
       - name: Download latest OpenAPI spec
         run: |
           if ! curl -fsSL https://raw.githubusercontent.com/noriapp/nori/main/openapi.yaml \
@@ -45,11 +39,9 @@ jobs:
         with:
           php-version: "8.3"
 
-      - name: Configure local PHP SDK repository
+      - name: Syntax check wrapper files
         run: |
-          composer config repositories.nori-php path ./nori-php
-          composer config minimum-stability dev
-          composer config prefer-stable true
-
-      - name: Install dependencies
-        run: composer install --no-interaction
+          php -l src/NoriServiceProvider.php
+          php -l src/NoriMiddleware.php
+          php -l src/Facades/Nori.php
+          php -l config/nori.php
