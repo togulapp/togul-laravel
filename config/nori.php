@@ -2,7 +2,7 @@
 
 return [
     'base_url' => env('NORI_BASE_URL', 'http://localhost:8080'),
-    'api_key' => env('NORI_API_KEY', ''),
+    'api_key' => env('NORI_API_KEY', ''), // environment API key used for evaluate/stream requests
     'environment' => env('NORI_ENVIRONMENT', 'production'),
     'timeout' => env('NORI_TIMEOUT', 5.0),
     'cache_ttl' => env('NORI_CACHE_TTL', 30),
