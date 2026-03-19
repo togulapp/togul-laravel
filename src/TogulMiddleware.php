@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Nori\Laravel;
+namespace Togul\Laravel;
 
 use Closure;
 use Illuminate\Http\Request;
-use Nori\NoriClient;
+use Togul\TogulClient;
 use Symfony\Component\HttpFoundation\Response;
 
-class NoriMiddleware
+class TogulMiddleware
 {
     public function __construct(
-        private readonly NoriClient $client,
+        private readonly TogulClient $client,
     ) {}
 
     /**
@@ -20,7 +20,7 @@ class NoriMiddleware
      *
      * Usage in routes:
      *   Route::get('/dashboard', DashboardController::class)
-     *       ->middleware('nori:new-dashboard');
+     *       ->middleware('togul:new-dashboard');
      */
     public function handle(Request $request, Closure $next, string $flagKey): Response
     {

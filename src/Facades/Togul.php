@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nori\Laravel\Facades;
+namespace Togul\Laravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Facade;
  * @method static bool isEnabled(string $key, array $context = [])
  * @method static void invalidateCache()
  *
- * @see \Nori\NoriClient
+ * @see \Togul\TogulClient
  */
-class Nori extends Facade
+class Togul extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return 'nori';
+        return 'togul';
     }
 }

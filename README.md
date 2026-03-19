@@ -1,12 +1,12 @@
-# Nori Laravel SDK
+# Togul Laravel SDK
 
-Laravel integration layer for the Nori PHP SDK.
+Laravel integration layer for the Togul PHP SDK.
 
 ## Install
 
 ```bash
-composer require nori/laravel-sdk
-php artisan vendor:publish --tag=nori-config
+composer require togul/laravel-sdk
+php artisan vendor:publish --tag=togul-config
 ```
 
 ## Configuration
@@ -14,13 +14,13 @@ php artisan vendor:publish --tag=nori-config
 Add to `.env`:
 
 ```dotenv
-NORI_BASE_URL=http://localhost:8080
-NORI_API_KEY=your-environment-api-key
-NORI_ENVIRONMENT=production
-NORI_TIMEOUT=5
-NORI_CACHE_TTL=30
-NORI_FALLBACK_MODE=closed
-NORI_RETRY_COUNT=2
+TOGUL_BASE_URL=http://localhost:8080
+TOGUL_API_KEY=your-environment-api-key
+TOGUL_ENVIRONMENT=production
+TOGUL_TIMEOUT=5
+TOGUL_CACHE_TTL=30
+TOGUL_FALLBACK_MODE=closed
+TOGUL_RETRY_COUNT=2
 ```
 
 ## Usage
@@ -28,9 +28,9 @@ NORI_RETRY_COUNT=2
 Via facade:
 
 ```php
-use Nori\Laravel\Facades\Nori;
+use Togul\Laravel\Facades\Togul;
 
-$enabled = Nori::isEnabled('new-dashboard', [
+$enabled = Togul::isEnabled('new-dashboard', [
     'user_id' => (string) auth()->id(),
 ]);
 ```
@@ -38,11 +38,11 @@ $enabled = Nori::isEnabled('new-dashboard', [
 Via dependency injection:
 
 ```php
-use Nori\NoriClient;
+use Togul\TogulClient;
 
-public function __invoke(NoriClient $nori)
+public function __invoke(TogulClient $togul)
 {
-    $enabled = $nori->isEnabled('new-dashboard', [
+    $enabled = $togul->isEnabled('new-dashboard', [
         'user_id' => (string) auth()->id(),
     ]);
 }
@@ -52,10 +52,10 @@ Via middleware:
 
 ```php
 Route::get('/dashboard', DashboardController::class)
-    ->middleware('nori:new-dashboard');
+    ->middleware('togul:new-dashboard');
 ```
 
 ## Notes
 
-- `NORI_API_KEY` must be an environment API key, not a user JWT.
-- This package wraps `nori/php-sdk`; evaluation behavior follows the PHP SDK.
+- `TOGUL_API_KEY` must be an environment API key, not a user JWT.
+- This package wraps `togul/php-sdk`; evaluation behavior follows the PHP SDK.

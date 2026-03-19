@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Nori\Laravel;
+namespace Togul\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use Nori\Config;
-use Nori\FallbackMode;
-use Nori\NoriClient;
+use Togul\Config;
+use Togul\FallbackMode;
+use Togul\TogulClient;
 
-class NoriServiceProvider extends ServiceProvider
+class TogulServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/nori.php', 'nori');
+        $this->mergeConfigFrom(__DIR__ . '/../config/togul.php', 'togul');
 
-        $this->app->singleton(NoriClient::class, function ($app) {
-            $config = $app['config']['nori'];
+        $this->app->singleton(TogulClient::class, function ($app) {
+            $config = $app['config']['togul'];
 
-            return new NoriClient(new Config(
+            return new TogulClient(new Config(
                 baseUrl: $config['base_url'],
                 environment: $config['environment'],
                 apiKey: $config['api_key'],
@@ -31,13 +31,13 @@ class NoriServiceProvider extends ServiceProvider
             ));
         });
 
-        $this->app->alias(NoriClient::class, 'nori');
+        $this->app->alias(TogulClient::class, 'togul');
     }
 
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/nori.php' => config_path('nori.php'),
-        ], 'nori-config');
+            __DIR__ . '/../config/togul.php' => config_path('togul.php'),
+        ], 'togul-config');
     }
 }
