@@ -14,7 +14,6 @@ php artisan vendor:publish --tag=togul-config
 Add to `.env`:
 
 ```dotenv
-TOGUL_BASE_URL=http://localhost:8080
 TOGUL_API_KEY=your-environment-api-key
 TOGUL_ENVIRONMENT=production
 TOGUL_TIMEOUT=5
