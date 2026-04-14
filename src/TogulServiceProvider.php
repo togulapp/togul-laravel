@@ -31,6 +31,10 @@ class TogulServiceProvider extends ServiceProvider
             ));
         });
 
+        $this->app->singleton(TogulStreamService::class, function ($app) {
+            return new TogulStreamService($app->make(TogulClient::class));
+        });
+
         $this->app->alias(TogulClient::class, 'togul');
     }
 
