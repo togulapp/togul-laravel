@@ -19,7 +19,6 @@ class TogulServiceProvider extends ServiceProvider
             $config = $app['config']['togul'];
 
             return new TogulClient(new Config(
-                baseUrl: $config['base_url'],
                 environment: $config['environment'],
                 apiKey: $config['api_key'],
                 timeout: (float) $config['timeout'],

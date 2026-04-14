@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'base_url' => env('TOGUL_BASE_URL', 'http://localhost:8080'),
     'api_key' => env('TOGUL_API_KEY', ''), // environment API key used for evaluate/stream requests
     'environment' => env('TOGUL_ENVIRONMENT', 'production'),
     'timeout' => env('TOGUL_TIMEOUT', 5.0),
