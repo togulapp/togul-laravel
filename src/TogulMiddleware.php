@@ -28,7 +28,7 @@ class TogulMiddleware
             'user_id' => (string) ($request->user()?->id ?? ''),
         ];
 
-        if (!$this->client->isEnabled($flagKey, $context)) {
+        if (!$this->client->evaluate($flagKey, $context)->enabled) {
             abort(404);
         }
 
