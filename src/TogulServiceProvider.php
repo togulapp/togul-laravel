@@ -6,7 +6,6 @@ namespace Togul\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use Togul\Config;
-use Togul\FallbackMode;
 use Togul\TogulClient;
 
 class TogulServiceProvider extends ServiceProvider
@@ -23,9 +22,6 @@ class TogulServiceProvider extends ServiceProvider
                 apiKey: $config['api_key'],
                 timeout: (float) $config['timeout'],
                 cacheTtl: (int) $config['cache_ttl'],
-                fallbackMode: $config['fallback_mode'] === 'open'
-                    ? FallbackMode::FailOpen
-                    : FallbackMode::FailClosed,
                 retryCount: (int) $config['retry_count'],
             ));
         });
