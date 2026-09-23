@@ -45,3 +45,9 @@ jobs:
           php -l src/TogulMiddleware.php
           php -l src/Facades/Togul.php
           php -l config/togul.php
+
+      - name: Install dependencies
+        run: composer update --no-interaction --prefer-dist
+
+      - name: Run tests
+        run: composer test
