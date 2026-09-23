@@ -77,6 +77,30 @@ Togul::invalidateFlag('new-dashboard'); // single flag
 Togul::invalidateCache();               // all flags
 ```
 
+## OpenFeature
+
+When `open-feature/sdk` is installed, the service provider registers `Togul\OpenFeature\TogulProvider` as the global OpenFeature provider, built from the same `TogulClient` singleton.
+
+```bash
+composer require open-feature/sdk
+```
+
+```php
+use OpenFeature\OpenFeatureAPI;
+use OpenFeature\implementation\flags\EvaluationContext;
+
+$enabled = OpenFeatureAPI::getInstance()
+    ->getClient()
+    ->getBooleanValue('new-dashboard', false, new EvaluationContext((string) auth()->id()));
+```
+
+```dotenv
+TOGUL_OPENFEATURE_REGISTER=true        # set false to register providers yourself
+TOGUL_OPENFEATURE_TARGETING_KEY=user_id
+```
+
+See the [PHP SDK README](https://github.com/togulapp/togul-php#openfeature) for how reasons and errors are mapped.
+
 ## Notes
 
 - `TOGUL_API_KEY` must be an environment API key, not a user JWT.
